@@ -1,3 +1,2 @@
 Check wheather we are running in virtualised machine (x86,linux, gcc inline assembly)
 
-Returns true(0) if we are, returns -1(false) if we are not
