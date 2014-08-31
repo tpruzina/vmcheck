@@ -13,6 +13,8 @@ idtCheck()
 	dt idt = {0, 0};
 	asm volatile( "sidt %0" : "=m"(idt) );
 
+	printf("IDT: limit=%04d, base=%016lx\n", idt.limit, idt.base);
+
 	return idt.base;
 }
 
@@ -22,6 +24,8 @@ gdtCheck()
 	dt gdt = {0, 0};
 	asm volatile( "sgdt %0" : "=m"(gdt) );
 	
+	printf("GDT: limit=%04d, base=%016lx\n", gdt.limit, gdt.base);
+
 	return gdt.base;
 }
 
@@ -31,7 +35,7 @@ ldtCheck()
 	unsigned char m[6];
 
 	asm("sldt %0\n" : : "m"(m));
-
+	
 	return (m[0] != 0x00 && m[1] != 0x00) ? 1 : 0;
 }
 
